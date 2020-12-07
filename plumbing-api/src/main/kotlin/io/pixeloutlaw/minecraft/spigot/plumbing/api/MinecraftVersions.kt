@@ -6,12 +6,10 @@ import org.bukkit.Bukkit
  * Utility for determining which version of Minecraft is in use.
  */
 object MinecraftVersions {
+    private const val THIRD_DOT = 3
+
     val nmsVersion: String by lazy {
-        try {
-            Bukkit.getServer().javaClass.`package`.name.split("\\.")[3]
-        } catch (e: IndexOutOfBoundsException) {
-            ""
-        }
+        Bukkit.getServer().javaClass.`package`.name.split("\\.")[THIRD_DOT]
     }
 
     /**

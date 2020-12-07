@@ -3,14 +3,15 @@ package io.pixeloutlaw.minecraft.spigot.plumbing.lib
 import io.pixeloutlaw.minecraft.spigot.plumbing.api.AbstractMessageBroadcaster
 import io.pixeloutlaw.minecraft.spigot.plumbing.api.MinecraftVersions
 import net.md_5.bungee.api.chat.HoverEvent
-import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
+/**
+ * Utility for broadcasting messages about [ItemStack]s.
+ */
 object MessageBroadcaster {
     private val broadcasterByServer: AbstractMessageBroadcaster by lazy {
-        val bukkitPackageName = Bukkit.getServer().javaClass.`package`.name
-        when (try { bukkitPackageName.split("\\.")[3] } catch (e: IndexOutOfBoundsException) { "" }) {
+        when (MinecraftVersions.nmsVersion) {
             "v1_16_R3" -> io.pixeloutlaw.minecraft.spigot.plumbing.MessageBroadcaster1164()
             "v1_16_R2" -> io.pixeloutlaw.minecraft.spigot.plumbing.MessageBroadcaster1163()
             "v1_16_R1" -> io.pixeloutlaw.minecraft.spigot.plumbing.MessageBroadcaster1161()
