@@ -48,7 +48,7 @@ object MessageBroadcaster {
         broadcasterByServer.broadcastItem(format, player, itemStack, target, visibility)
     }
 
-    internal class NoOpMessageBroadcaster: AbstractMessageBroadcaster() {
+    internal class NoOpMessageBroadcaster : AbstractMessageBroadcaster() {
         override fun convertItemStackToJson(itemStack: ItemStack): String {
             return "{}"
         }
