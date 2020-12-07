@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     id("nebula.release") version "15.3.0"
+    id("nebula.nebula-bintray") version "8.5.0"
     id("io.pixeloutlaw.multi") version "0.5.0"
     id("io.pixeloutlaw.spigot.build") version "0.5.0"
 }
