@@ -10,7 +10,6 @@ dependencies {
 
     implementation(project(":plumbing-1_16_4"))
     implementation(project(":plumbing-1_16_3"))
-    implementation(project(":plumbing-1_16_2"))
     implementation(project(":plumbing-1_16_1"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:_")
 }

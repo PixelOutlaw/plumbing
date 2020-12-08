@@ -37,7 +37,6 @@ include(
     "plumbing-api",
     "plumbing-1_16_4",
     "plumbing-1_16_3",
-    "plumbing-1_16_2",
     "plumbing-1_16_1",
     "plumbing-lib"
 )

@@ -9,7 +9,7 @@ object MinecraftVersions {
     private const val THIRD_DOT = 3
 
     val nmsVersion: String by lazy {
-        Bukkit.getServer().javaClass.`package`.name.split("\\.")[THIRD_DOT]
+        Bukkit.getServer().javaClass.`package`.name.split(".")[THIRD_DOT]
     }
 
     /**
