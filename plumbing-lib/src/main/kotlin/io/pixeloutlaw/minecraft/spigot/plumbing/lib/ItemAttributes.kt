@@ -10,6 +10,9 @@ import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 
 object ItemAttributes {
+    private val availableEquipmentSlots by lazy {
+        EquipmentSlot.values()
+    }
     private val itemAttributesByServer: AbstractItemAttributes by lazy {
         when (MinecraftVersions.nmsVersion) {
             "v1_16_R3" -> io.pixeloutlaw.minecraft.spigot.plumbing.ItemAttributes1164()
@@ -25,6 +28,14 @@ object ItemAttributes {
      * Returns `true` if the version of bukkit
      */
     val isSupportedBukkitVersion: Boolean by lazy { MinecraftVersions.isAtLeastMinecraft116 }
+
+    fun getDefaultItemAttributes(itemStack: ItemStack): Multimap<Attribute, AttributeModifier> {
+        val results = HashMultimap.create<Attribute, AttributeModifier>()
+        availableEquipmentSlots.forEach { slot ->
+            results.putAll(getDefaultItemAttributes(itemStack, slot))
+        }
+        return results
+    }
 
     fun getDefaultItemAttributes(
         itemStack: ItemStack,
