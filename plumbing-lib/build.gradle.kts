@@ -4,12 +4,12 @@ plugins {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
 
     api(project(":plumbing-api"))
 
-    implementation(project(":plumbing-1_16_4"))
-    implementation(project(":plumbing-1_16_3"))
-    implementation(project(":plumbing-1_16_1"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:_")
+    implementation(project(":plumbing-1_16_R3"))
+    implementation(project(":plumbing-1_16_R2"))
+    implementation(project(":plumbing-1_16_R1"))
 }

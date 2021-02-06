@@ -15,9 +15,9 @@ object ItemAttributes {
     }
     private val itemAttributesByServer: AbstractItemAttributes by lazy {
         when (MinecraftVersions.nmsVersion) {
-            "v1_16_R3" -> io.pixeloutlaw.minecraft.spigot.plumbing.ItemAttributes1164()
-            "v1_16_R2" -> io.pixeloutlaw.minecraft.spigot.plumbing.ItemAttributes1163()
-            "v1_16_R1" -> io.pixeloutlaw.minecraft.spigot.plumbing.ItemAttributes1161()
+            "v1_16_R3" -> io.pixeloutlaw.minecraft.spigot.plumbing.v116R3.ItemAttributes()
+            "v1_16_R2" -> io.pixeloutlaw.minecraft.spigot.plumbing.v116R2.ItemAttributes()
+            "v1_16_R1" -> io.pixeloutlaw.minecraft.spigot.plumbing.v116R1.ItemAttributes()
             else -> {
                 NoOpItemAttributes()
             }
@@ -45,7 +45,7 @@ object ItemAttributes {
         return itemAttributesByServer.getDefaultItemAttributes(itemStack, equipmentSlot)
     }
 
-    internal class NoOpItemAttributes : AbstractItemAttributes() {
+    internal class NoOpItemAttributes : AbstractItemAttributes {
         override fun getDefaultItemAttributes(
             itemStack: ItemStack,
             equipmentSlot: EquipmentSlot

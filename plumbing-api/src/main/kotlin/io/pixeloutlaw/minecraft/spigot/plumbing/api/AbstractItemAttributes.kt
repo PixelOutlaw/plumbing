@@ -9,9 +9,12 @@ import org.bukkit.inventory.ItemStack
 /**
  * Utility for getting default attributes from items.
  */
-abstract class AbstractItemAttributes {
+interface AbstractItemAttributes {
     /**
      * Gets the default attribute values for an [ItemStack] in a specific [EquipmentSlot].
      */
-    abstract fun getDefaultItemAttributes(itemStack: ItemStack, equipmentSlot: EquipmentSlot): Multimap<Attribute, AttributeModifier>
+    fun getDefaultItemAttributes(
+        itemStack: ItemStack,
+        equipmentSlot: EquipmentSlot
+    ): Multimap<Attribute, AttributeModifier>
 }
