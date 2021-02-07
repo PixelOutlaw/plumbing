@@ -1,16 +1,14 @@
 plugins {
-    kotlin("jvm")
-    id("nebula.release")
-    id("nebula.nebula-bintray")
-    id("io.pixeloutlaw.multi")
+    kotlin("jvm") apply false
+    id("io.pixeloutlaw.gradle")
     id("io.pixeloutlaw.spigot.build")
 }
 
-bintray {
-    pkgName.value("plumbing")
-    repo.value("pixeloutlaw-jars")
-    userOrg.value("pixeloutlaw")
-    syncToMavenCentral.value(false)
+description = "NMS and OBC Adapters for MythicDrops"
+
+subprojects {
+    this@subprojects.description = rootProject.description
+    this@subprojects.version = rootProject.version
 }
 
 spigotBuildTools {
