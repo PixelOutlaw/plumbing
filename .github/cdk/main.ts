@@ -3,7 +3,7 @@ import {App, Stack, StepsProps} from "cdkactions";
 import {
   createGradleLibraryPullRequestWorkflow,
   createGradleLibraryPrepareForReleaseWorkflow,
-  createGradleLibraryReleaseWorkflow
+  createGradleLibraryReleaseWorkflow, GradleLibraryConfig
 } from "@pixeloutlaw/github-cdkactions";
 
 export class MyStack extends Stack {
@@ -11,12 +11,15 @@ export class MyStack extends Stack {
     super(scope, id);
 
     // define workflows here
-    const runSpigotBuildToolsSteps: StepsProps[] = [{
+    const preTestSteps: StepsProps[] = [{
       name: "Run Spigot Build Tools",
       run: "./gradlew runSpigotBuildTools"
     }];
-    createGradleLibraryPullRequestWorkflow(this, runSpigotBuildToolsSteps);
-    createGradleLibraryPrepareForReleaseWorkflow(this, runSpigotBuildToolsSteps);
+    const gradleLibraryConfig: GradleLibraryConfig = {
+      preTestSteps
+    };
+    createGradleLibraryPullRequestWorkflow(this, gradleLibraryConfig);
+    createGradleLibraryPrepareForReleaseWorkflow(this, gradleLibraryConfig);
     createGradleLibraryReleaseWorkflow(this);
   }
 }
