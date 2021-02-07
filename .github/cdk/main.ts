@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { App, Stack } from "cdkactions";
+import {App, Stack, StepsProps} from "cdkactions";
 import {
   createGradleLibraryPullRequestWorkflow,
   createGradleLibraryPrepareForReleaseWorkflow,
@@ -11,8 +11,12 @@ export class MyStack extends Stack {
     super(scope, id);
 
     // define workflows here
-    createGradleLibraryPullRequestWorkflow(this);
-    createGradleLibraryPrepareForReleaseWorkflow(this);
+    const runSpigotBuildToolsSteps: StepsProps[] = [{
+      name: "Run Spigot Build Tools",
+      run: "./gradlew runSpigotBuildTools"
+    }];
+    createGradleLibraryPullRequestWorkflow(this, runSpigotBuildToolsSteps);
+    createGradleLibraryPrepareForReleaseWorkflow(this, runSpigotBuildToolsSteps);
     createGradleLibraryReleaseWorkflow(this);
   }
 }
