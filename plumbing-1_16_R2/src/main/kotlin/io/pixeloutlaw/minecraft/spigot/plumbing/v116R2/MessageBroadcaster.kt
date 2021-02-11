@@ -16,6 +16,6 @@ class MessageBroadcaster : AbstractMessageBroadcaster() {
     }
 
     override fun createShowItemHoverEvent(itemStackJson: String): HoverEvent {
-        return HoverEvent(HoverEvent.Action.SHOW_ITEM, Text(arrayOf(TextComponent(itemStackJson))))
+        return HoverEvent(HoverEvent.Action.SHOW_TEXT, Text(arrayOf(TextComponent(itemStackJson))))
     }
 }
