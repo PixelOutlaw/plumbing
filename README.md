@@ -1,6 +1,6 @@
 # plumbing
 
-> Code that uses NMS or OBC for PixelOutlaw.
+> Code that uses NMS or OBC for MythicDrops.
 
 ## Development
 
