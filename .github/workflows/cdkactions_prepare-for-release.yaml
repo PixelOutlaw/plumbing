@@ -29,8 +29,6 @@ jobs:
         run: chmod +x ./gradlew
       - name: Set Gradle Version
         run: ./gradlew wrapper --gradle-version 6.8.2
-      - name: Run Spigot Build Tools
-        run: ./gradlew runSpigotBuildTools
       - name: Test Library with Gradle
         run: ./gradlew check
       - name: Push Tag

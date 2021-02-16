@@ -21,11 +21,10 @@ gradle.allprojects {
     group = "io.pixeloutlaw"
 
     repositories {
-        mavenLocal()
         mavenCentral()
         jcenter()
         maven {
-            url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
+            url = uri("https://repo.codemc.org/repository/nms")
         }
         maven {
             url = uri("https://oss.sonatype.org/content/repositories/snapshots")
