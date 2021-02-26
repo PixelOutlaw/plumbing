@@ -10,10 +10,6 @@ import org.bukkit.inventory.ItemStack
  * Allows broadcasting messages on a Spigot server.
  */
 abstract class AbstractMessageBroadcaster {
-    companion object {
-        private val whitespaceRegex = "\\s+".toRegex()
-    }
-
     /**
      * To whom should the broadcast be sent?
      */
@@ -97,8 +93,7 @@ abstract class AbstractMessageBroadcaster {
         TextComponent.fromLegacyText(itemStackName).forEach {
             itemStackNameComponent.addExtra(it)
         }
-        val itemStackAsJson = convertItemStackToJson(itemStack)
-        itemStackNameComponent.hoverEvent = createShowItemHoverEvent(itemStackAsJson)
+        itemStackNameComponent.hoverEvent = createShowItemHoverEvent(itemStack)
         messages.indices.forEach { idx ->
             val key = messages[idx]
             TextComponent.fromLegacyText(key).forEach {
@@ -126,9 +121,7 @@ abstract class AbstractMessageBroadcaster {
         }
     }
 
-    abstract fun convertItemStackToJson(itemStack: ItemStack): String
-
-    abstract fun createShowItemHoverEvent(itemStackJson: String): HoverEvent
+    abstract fun createShowItemHoverEvent(itemStack: ItemStack): HoverEvent
 
     private fun ItemStack.getDisplayName(): String? = this.itemMeta?.let {
         return if (it.hasDisplayName()) {
