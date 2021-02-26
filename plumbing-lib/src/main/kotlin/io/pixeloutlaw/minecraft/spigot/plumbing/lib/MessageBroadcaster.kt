@@ -3,7 +3,6 @@ package io.pixeloutlaw.minecraft.spigot.plumbing.lib
 import io.pixeloutlaw.minecraft.spigot.plumbing.api.AbstractMessageBroadcaster
 import io.pixeloutlaw.minecraft.spigot.plumbing.api.MinecraftVersions
 import net.md_5.bungee.api.chat.HoverEvent
-import net.md_5.bungee.api.chat.TextComponent
 import net.md_5.bungee.api.chat.TranslatableComponent
 import net.md_5.bungee.api.chat.hover.content.Text
 import org.bukkit.entity.Player
@@ -53,7 +52,10 @@ object MessageBroadcaster {
 
     internal class NoOpMessageBroadcaster : AbstractMessageBroadcaster() {
         override fun createShowItemHoverEvent(itemStack: ItemStack): HoverEvent {
-            return HoverEvent(HoverEvent.Action.SHOW_TEXT, Text(arrayOf(TranslatableComponent("item.minecraft.${itemStack.type.name.toLowerCase()}"))))
+            return HoverEvent(
+                HoverEvent.Action.SHOW_TEXT,
+                Text(arrayOf(TranslatableComponent("item.minecraft.${itemStack.type.name.toLowerCase()}")))
+            )
         }
     }
 }
