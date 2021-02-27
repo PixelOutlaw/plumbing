@@ -1,3 +1,11 @@
+## [2.0.1](https://github.com/MythicDrops/plumbing/compare/v2.0.0...v2.0.1) (2021-02-27)
+
+
+### Bug Fixes
+
+* **messagebroadcaster:** properly serialize items ([3827a91](https://github.com/MythicDrops/plumbing/commit/3827a91d6f43e8dd8445520b55e91ac28e100836)), closes [MythicDrops/MythicDrops#535](https://github.com/MythicDrops/MythicDrops/issues/535)
+* **messagebroadcaster:** properly serialize json for hover event ([5ac8b20](https://github.com/MythicDrops/plumbing/commit/5ac8b206274ca4177754ccde24b949556be4c294)), closes [MythicDrops/MythicDrops#535](https://github.com/MythicDrops/MythicDrops/issues/535)
+
 # [2.0.0](https://github.com/MythicDrops/plumbing/compare/v1.1.0...v2.0.0) (2021-02-26)
 
 
