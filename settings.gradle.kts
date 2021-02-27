@@ -22,7 +22,10 @@ gradle.allprojects {
 
     repositories {
         mavenCentral()
-        jcenter()
+        jcenter() // remove this once dokka is in maven central
+        maven {
+            url = uri("https://repo.minebench.de/")
+        }
         maven {
             url = uri("https://repo.codemc.org/repository/nms")
         }
@@ -37,5 +40,8 @@ include(
     "plumbing-1_16_R3",
     "plumbing-1_16_R2",
     "plumbing-1_16_R1",
+    "plumbing-1_15_R3",
+    "plumbing-1_15_R2",
+    "plumbing-1_15_R1",
     "plumbing-lib"
 )

@@ -29,7 +29,8 @@ private val chatColorReplacementMap = ChatColor.values().flatMap {
         "<${it.name}>" to it,
         "<${it.name.replace("_", " ")}>" to it,
         "<${it.name.replace("_", "")}>" to it,
-        it.toString().replace(ChatColor.COLOR_CHAR, '&') to it
+        it.toString().toUpperCase().replace(ChatColor.COLOR_CHAR, '&') to it,
+        it.toString().toLowerCase().replace(ChatColor.COLOR_CHAR, '&') to it
     )
 }.toMap()
 private val whiteSpaceRegex = "\\s+".toRegex()

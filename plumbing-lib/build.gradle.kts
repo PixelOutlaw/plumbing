@@ -11,4 +11,7 @@ dependencies {
     implementation(project(":plumbing-1_16_R3"))
     implementation(project(":plumbing-1_16_R2"))
     implementation(project(":plumbing-1_16_R1"))
+    implementation(project(":plumbing-1_15_R3"))
+    implementation(project(":plumbing-1_15_R2"))
+    implementation(project(":plumbing-1_15_R1"))
 }
