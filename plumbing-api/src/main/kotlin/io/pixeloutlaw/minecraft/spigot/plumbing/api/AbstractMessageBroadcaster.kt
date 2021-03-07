@@ -6,6 +6,7 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
+import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
@@ -48,7 +49,6 @@ abstract class AbstractMessageBroadcaster {
      * @param player Player to reference
      * @param itemStack ItemStack to reference
      * @param target Who should see the broadcast
-     * @param visibility Should item name be visible
      */
     fun broadcastItem(
         format: String,
@@ -84,10 +84,14 @@ abstract class AbstractMessageBroadcaster {
 
         when (target) {
             BroadcastTarget.SERVER -> {
-                bukkitAudiences.players().sendMessage(broadcastComponent)
+                Bukkit.getServer().onlinePlayers.forEach {
+                    bukkitAudiences.player(it).sendMessage(broadcastComponent)
+                }
             }
             BroadcastTarget.WORLD -> {
-                bukkitAudiences.world(Key.key(player.world.name)).sendMessage(broadcastComponent)
+                player.world.players.forEach {
+                    bukkitAudiences.player(it).sendMessage(broadcastComponent)
+                }
             }
             BroadcastTarget.PLAYER -> {
                 bukkitAudiences.player(player).sendMessage(broadcastComponent)
