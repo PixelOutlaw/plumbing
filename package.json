@@ -5,7 +5,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "postinstall": "is-ci || husky install",
+    "prepare": "is-ci || husky install",
     "release": "semantic-release"
   },
   "devDependencies": {
