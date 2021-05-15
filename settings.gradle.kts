@@ -10,7 +10,7 @@ buildscript {
     repositories {
         gradlePluginPortal()
     }
-    dependencies.classpath("de.fayard.refreshVersions:refreshVersions:0.9.7")
+    dependencies.classpath("de.fayard.refreshVersions:refreshVersions:0.10.0")
 }
 
 rootProject.name = "plumbing"
