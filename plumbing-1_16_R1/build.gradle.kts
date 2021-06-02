@@ -7,5 +7,5 @@ dependencies {
 
     api(project(":plumbing-api"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:_")
+    implementation(kotlin("stdlib-jdk8"))
 }

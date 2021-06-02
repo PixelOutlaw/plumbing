@@ -1,31 +1,15 @@
-import de.fayard.refreshVersions.bootstrapRefreshVersions
-
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
-
-buildscript {
-    repositories {
-        gradlePluginPortal()
-    }
-    dependencies.classpath("de.fayard.refreshVersions:refreshVersions:0.9.7")
+plugins {
+    // See https://jmfayard.github.io/refreshVersions
+    id("de.fayard.refreshVersions") version "0.10.0"
 }
 
 rootProject.name = "plumbing"
-
-bootstrapRefreshVersions()
 
 gradle.allprojects {
     group = "io.pixeloutlaw"
 
     repositories {
         mavenCentral()
-        jcenter() // remove this when korte is added to maven central
-        maven {
-            url = uri("https://maven.pkg.jetbrains.space/kotlin/p/dokka/dev")
-        }
         maven {
             url = uri("https://repo.minebench.de/")
         }

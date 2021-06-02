@@ -7,7 +7,7 @@ dependencies {
 
     api("net.kyori:adventure-platform-bukkit:_")
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:_")
+    implementation(kotlin("stdlib-jdk8"))
     implementation("net.kyori:adventure-text-serializer-gson:_") {
         exclude(group = "com.google.code.gson", module = "gson")
     }

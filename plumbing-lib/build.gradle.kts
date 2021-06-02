@@ -7,7 +7,7 @@ dependencies {
 
     api(project(":plumbing-api"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:_")
+    implementation(kotlin("stdlib-jdk8"))
     rootProject.subprojects.filter { it.name.contains("_R") }.forEach {
         implementation(project(":${it.name}"))
     }
