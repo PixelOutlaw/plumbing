@@ -23,14 +23,15 @@
 package io.pixeloutlaw.minecraft.spigot.plumbing.api
 
 import org.bukkit.ChatColor
+import java.util.Locale
 
 private val chatColorReplacementMap = ChatColor.values().flatMap {
     listOf(
         "<${it.name}>" to it,
         "<${it.name.replace("_", " ")}>" to it,
         "<${it.name.replace("_", "")}>" to it,
-        it.toString().toUpperCase().replace(ChatColor.COLOR_CHAR, '&') to it,
-        it.toString().toLowerCase().replace(ChatColor.COLOR_CHAR, '&') to it
+        it.toString().uppercase(Locale.getDefault()).replace(ChatColor.COLOR_CHAR, '&') to it,
+        it.toString().lowercase(Locale.getDefault()).replace(ChatColor.COLOR_CHAR, '&') to it
     )
 }.toMap()
 private val whiteSpaceRegex = "\\s+".toRegex()
@@ -43,7 +44,7 @@ private val whiteSpaceRegex = "\\s+".toRegex()
  * @return copy of [String] with arguments replaced
  */
 fun String.replaceArgs(args: Array<Array<String>>): String =
-    args.filter { it.size >= 2 }.fold(this, { acc, strings -> acc.replace(strings[0], strings[1]) })
+    args.filter { it.size >= 2 }.fold(this) { acc, strings -> acc.replace(strings[0], strings[1]) }
 
 /**
  * Replaces all arguments (first item in pair) with their values (second item in pair).
@@ -67,7 +68,7 @@ fun String.replaceArgs(args: Iterable<Pair<String, String>>): String =
  * Replaces all ampersands with [ChatColor.COLOR_CHAR] and all instances of two [ChatColor.COLOR_CHAR] with ampersands.
  */
 fun String.chatColorize(): String =
-    chatColorReplacementMap.entries.fold(this, { acc, entry -> acc.replace(entry.key, entry.value.toString()) })
+    chatColorReplacementMap.entries.fold(this) { acc, entry -> acc.replace(entry.key, entry.value.toString()) }
 
 /**
  * Replaces all [ChatColor.COLOR_CHAR] with ampersands.
@@ -103,9 +104,9 @@ fun String.endsWithAny(list: List<String>, ignoreCase: Boolean = false): Boolean
 fun String.toTitleCase(): String {
     return split(whiteSpaceRegex).joinToString(separator = " ") {
         if (it.length > 1) {
-            "${it.substring(0, 1).toUpperCase()}${it.substring(1).toLowerCase()}"
+            "${it.substring(0, 1).uppercase(Locale.getDefault())}${it.substring(1).lowercase(Locale.getDefault())}"
         } else {
-            it.toUpperCase()
+            it.uppercase(Locale.getDefault())
         }
     }
 }

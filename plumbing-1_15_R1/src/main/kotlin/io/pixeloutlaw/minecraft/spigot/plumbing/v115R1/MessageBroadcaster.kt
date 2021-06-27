@@ -5,7 +5,7 @@ import net.minecraft.server.v1_15_R1.NBTTagCompound
 import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack
 import org.bukkit.inventory.ItemStack
 
-class MessageBroadcaster : AbstractMessageBroadcaster() {
+object MessageBroadcaster : AbstractMessageBroadcaster() {
     override fun convertItemStackToJson(itemStack: ItemStack): String {
         val nbtTagCompound = NBTTagCompound()
         val nmsItemStack = CraftItemStack.asNMSCopy(itemStack)

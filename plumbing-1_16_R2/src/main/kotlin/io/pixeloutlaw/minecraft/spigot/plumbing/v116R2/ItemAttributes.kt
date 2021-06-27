@@ -12,7 +12,7 @@ import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 
-class ItemAttributes : AbstractItemAttributes {
+object ItemAttributes : AbstractItemAttributes {
     private val genericAttributeList = listOf(
         GenericAttributes.MAX_HEALTH,
         GenericAttributes.FOLLOW_RANGE,

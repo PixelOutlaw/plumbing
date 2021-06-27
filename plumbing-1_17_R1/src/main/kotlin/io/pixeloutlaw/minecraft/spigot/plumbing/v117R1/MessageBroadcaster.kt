@@ -1,8 +1,8 @@
-package io.pixeloutlaw.minecraft.spigot.plumbing.v116R3
+package io.pixeloutlaw.minecraft.spigot.plumbing.v117R1
 
 import io.pixeloutlaw.minecraft.spigot.plumbing.api.AbstractMessageBroadcaster
-import net.minecraft.server.v1_16_R3.NBTTagCompound
-import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack
+import net.minecraft.nbt.NBTTagCompound
+import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack
 import org.bukkit.inventory.ItemStack
 
 object MessageBroadcaster : AbstractMessageBroadcaster() {

@@ -13,6 +13,18 @@ object MinecraftVersions {
     }
 
     /**
+     * Returns true if the Axolotl interface exists, which means we're in 1.16+.
+     */
+    val isAtLeastMinecraft117 by lazy {
+        try {
+            Class.forName("org.bukkit.entity.Axolotl")
+            true
+        } catch (ex: ClassNotFoundException) {
+            false
+        }
+    }
+
+    /**
      * Returns true if the PrepareSmithingEvent class exists, which means we're in 1.16+ and a newer version
      * of 1.16+.
      */

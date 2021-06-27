@@ -1,48 +1,46 @@
-package io.pixeloutlaw.minecraft.spigot.plumbing.v116R1
+package io.pixeloutlaw.minecraft.spigot.plumbing.v117R1
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
 import io.pixeloutlaw.minecraft.spigot.plumbing.api.AbstractItemAttributes
-import net.minecraft.server.v1_16_R1.AttributeBase
-import net.minecraft.server.v1_16_R1.AttributeModifier
-import net.minecraft.server.v1_16_R1.EnumItemSlot
-import net.minecraft.server.v1_16_R1.GenericAttributes
+import net.minecraft.world.entity.EnumItemSlot
+import net.minecraft.world.entity.ai.attributes.AttributeBase
+import net.minecraft.world.entity.ai.attributes.AttributeModifier
+import net.minecraft.world.entity.ai.attributes.GenericAttributes
 import org.bukkit.attribute.Attribute
-import org.bukkit.craftbukkit.v1_16_R1.inventory.CraftItemStack
+import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 
 object ItemAttributes : AbstractItemAttributes {
-    private val genericAttributeList = listOf(
-        GenericAttributes.MAX_HEALTH,
-        GenericAttributes.FOLLOW_RANGE,
-        GenericAttributes.KNOCKBACK_RESISTANCE,
-        GenericAttributes.MOVEMENT_SPEED,
-        GenericAttributes.FLYING_SPEED,
-        GenericAttributes.ATTACK_DAMAGE,
-        GenericAttributes.ATTACK_KNOCKBACK,
-        GenericAttributes.ATTACK_SPEED,
-        GenericAttributes.ARMOR,
-        GenericAttributes.ARMOR_TOUGHNESS,
-        GenericAttributes.LUCK,
-        GenericAttributes.SPAWN_REINFORCEMENTS,
-        GenericAttributes.JUMP_STRENGTH
+    private val nmsAttributeList = listOf(
+        GenericAttributes.a,
+        GenericAttributes.b,
+        GenericAttributes.c,
+        GenericAttributes.d,
+        GenericAttributes.e,
+        GenericAttributes.f,
+        GenericAttributes.g,
+        GenericAttributes.h,
+        GenericAttributes.i,
+        GenericAttributes.j,
+        GenericAttributes.k,
+        GenericAttributes.l,
+        GenericAttributes.m
     )
-    private val genericAttributeToAttributeMapping = mapOf(
-        GenericAttributes.MAX_HEALTH to Attribute.GENERIC_MAX_HEALTH,
-        GenericAttributes.FOLLOW_RANGE to Attribute.GENERIC_FOLLOW_RANGE,
-        GenericAttributes.KNOCKBACK_RESISTANCE to Attribute.GENERIC_KNOCKBACK_RESISTANCE,
-        GenericAttributes.MOVEMENT_SPEED to Attribute.GENERIC_MOVEMENT_SPEED,
-        GenericAttributes.FLYING_SPEED to Attribute.GENERIC_FLYING_SPEED,
-        GenericAttributes.ATTACK_DAMAGE to Attribute.GENERIC_ATTACK_DAMAGE,
-        GenericAttributes.ATTACK_KNOCKBACK to Attribute.GENERIC_ATTACK_KNOCKBACK,
-        GenericAttributes.ATTACK_SPEED to Attribute.GENERIC_ATTACK_SPEED,
-        GenericAttributes.ARMOR to Attribute.GENERIC_ARMOR,
-        GenericAttributes.ARMOR_TOUGHNESS to Attribute.GENERIC_ARMOR_TOUGHNESS,
-        GenericAttributes.LUCK to Attribute.GENERIC_LUCK,
-        GenericAttributes.SPAWN_REINFORCEMENTS to Attribute.ZOMBIE_SPAWN_REINFORCEMENTS,
-        GenericAttributes.JUMP_STRENGTH to Attribute.HORSE_JUMP_STRENGTH
-    )
+    private val bukkitAttributeList = Attribute.values().toList()
+    private val genericAttributeToAttributeMapping = nmsAttributeList.mapNotNull { nmsAttribute ->
+        val matchingBukkitAttribute = bukkitAttributeList.find { bukkitAttribute ->
+            nmsAttribute.name == bukkitAttribute.key.key
+        } ?: return@mapNotNull null
+        nmsAttribute to matchingBukkitAttribute
+    }.toMap()
+    private val mainHandSlot = EnumItemSlot.fromName("mainhand")
+    private val offHandSlot = EnumItemSlot.fromName("offhand")
+    private val feetSlot = EnumItemSlot.fromName("feet")
+    private val legsSlot = EnumItemSlot.fromName("legs")
+    private val chestSlot = EnumItemSlot.fromName("chest")
+    private val headSlot = EnumItemSlot.fromName("head")
 
     override fun getDefaultItemAttributes(
         itemStack: ItemStack,
@@ -54,7 +52,7 @@ object ItemAttributes : AbstractItemAttributes {
         val defaultAttributeMap = HashMultimap.create<Attribute, org.bukkit.attribute.AttributeModifier>()
 
         // iterate through each of the known attributes for this version of MC
-        genericAttributeList.forEach { attribute ->
+        nmsAttributeList.forEach { attribute ->
             // if the default list contains the iterated attribute, add any attribute modifiers to the known list
             attributeMap[attribute]?.let { attributeModifiers ->
                 defaultAttributeMap.putAll(
@@ -83,13 +81,13 @@ object ItemAttributes : AbstractItemAttributes {
         nmsAttributeModifierOperation: AttributeModifier.Operation
     ): org.bukkit.attribute.AttributeModifier.Operation =
         when (nmsAttributeModifierOperation) {
-            AttributeModifier.Operation.ADDITION -> {
+            AttributeModifier.Operation.a -> {
                 org.bukkit.attribute.AttributeModifier.Operation.ADD_NUMBER
             }
-            AttributeModifier.Operation.MULTIPLY_BASE -> {
+            AttributeModifier.Operation.b -> {
                 org.bukkit.attribute.AttributeModifier.Operation.ADD_SCALAR
             }
-            AttributeModifier.Operation.MULTIPLY_TOTAL -> {
+            AttributeModifier.Operation.c -> {
                 org.bukkit.attribute.AttributeModifier.Operation.MULTIPLY_SCALAR_1
             }
         }
@@ -98,11 +96,11 @@ object ItemAttributes : AbstractItemAttributes {
         genericAttributeToAttributeMapping[genericAttributes]
 
     private fun convertEquipmentSlotToEnumItemSlot(equipmentSlot: EquipmentSlot): EnumItemSlot = when (equipmentSlot) {
-        EquipmentSlot.HAND -> EnumItemSlot.MAINHAND
-        EquipmentSlot.OFF_HAND -> EnumItemSlot.OFFHAND
-        EquipmentSlot.FEET -> EnumItemSlot.FEET
-        EquipmentSlot.LEGS -> EnumItemSlot.LEGS
-        EquipmentSlot.CHEST -> EnumItemSlot.CHEST
-        EquipmentSlot.HEAD -> EnumItemSlot.HEAD
+        EquipmentSlot.HAND -> mainHandSlot
+        EquipmentSlot.OFF_HAND -> offHandSlot
+        EquipmentSlot.FEET -> feetSlot
+        EquipmentSlot.LEGS -> legsSlot
+        EquipmentSlot.CHEST -> chestSlot
+        EquipmentSlot.HEAD -> headSlot
     }
 }

@@ -1,6 +1,6 @@
 plugins {
     // See https://jmfayard.github.io/refreshVersions
-    id("de.fayard.refreshVersions") version "0.10.0"
+    id("de.fayard.refreshVersions") version "0.10.1"
 }
 
 rootProject.name = "plumbing"
@@ -9,6 +9,7 @@ gradle.allprojects {
     group = "io.pixeloutlaw"
 
     repositories {
+        mavenLocal()
         mavenCentral()
         maven {
             url = uri("https://repo.minebench.de/")
@@ -24,6 +25,7 @@ gradle.allprojects {
 
 include(
     "plumbing-api",
+    "plumbing-1_17_R1",
     "plumbing-1_16_R3",
     "plumbing-1_16_R2",
     "plumbing-1_16_R1",
