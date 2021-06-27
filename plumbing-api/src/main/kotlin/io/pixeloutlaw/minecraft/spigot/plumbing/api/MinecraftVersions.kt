@@ -13,7 +13,7 @@ object MinecraftVersions {
     }
 
     /**
-     * Returns true if the Axolotl interface exists, which means we're in 1.16+.
+     * Returns true if the Axolotl interface exists, which means we're in 1.17+.
      */
     val isAtLeastMinecraft117 by lazy {
         try {
