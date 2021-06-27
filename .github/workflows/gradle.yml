@@ -27,7 +27,7 @@ jobs:
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
       - name: Set Gradle Version
-        run: ./gradlew wrapper --gradle-version 6.8.2
+        run: ./gradlew wrapper --gradle-version 7.1
       - name: Build Library with Gradle
         run: ./gradlew build
       - name: Upload build artifacts
@@ -57,7 +57,7 @@ jobs:
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
       - name: Set Gradle Version
-        run: ./gradlew wrapper --gradle-version 6.8.2
+        run: ./gradlew wrapper --gradle-version 7.1
       - name: Test Library with Gradle
         run: ./gradlew check
       - name: Upload CodeCov Report
@@ -117,7 +117,7 @@ jobs:
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
       - name: Set Gradle Version
-        run: ./gradlew wrapper --gradle-version 6.8.2
+        run: ./gradlew wrapper --gradle-version 7.1
       - name: Run Semantic Release
         run: |
           npm ci
